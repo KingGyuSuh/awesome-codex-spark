@@ -1,0 +1,44 @@
+{
+  "name": "codex-spark",
+  "version": "0.1.0",
+  "description": "Traceable GPT-5.3 Codex Spark delegation for concrete Computer Use and Browser Use tasks.",
+  "author": {
+    "name": "KingGyuSuh",
+    "url": "https://github.com/KingGyuSuh"
+  },
+  "homepage": "https://github.com/KingGyuSuh/awesome-codex-spark#readme",
+  "repository": "https://github.com/KingGyuSuh/awesome-codex-spark",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "codex-spark",
+    "computer-use",
+    "browser-use",
+    "subagents",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Spark",
+    "shortDescription": "Traceable spark delegation for UI tasks",
+    "longDescription": "Delegate concrete desktop and browser operations to GPT-5.3 Codex Spark subagents while keeping the main session in charge of task shaping, approval, verification, and recovery.",
+    "developerName": "KingGyuSuh",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/KingGyuSuh/awesome-codex-spark",
+    "defaultPrompt": [
+      "Use $codex-spark-delegate to hand a Chrome UI check to spark.",
+      "Use $codex-spark-delegate to run a traceable Browser Use QA pass.",
+      "Use $codex-spark-delegate to fill this form after I approve the exact values."
+    ],
+    "brandColor": "#10A37F",
+    "composerIcon": "./assets/composer-icon.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": [
+      "./assets/screenshot-1.svg"
+    ]
+  }
+}

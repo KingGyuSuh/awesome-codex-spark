@@ -1,0 +1,60 @@
+{
+  "name": "codex-spark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Codex plugin for traceable GPT-5.3 Codex Spark delegation to Computer Use and Browser Use tasks.",
+  "type": "module",
+  "author": "KingGyuSuh",
+  "homepage": "https://github.com/KingGyuSuh/awesome-codex-spark#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingGyuSuh/awesome-codex-spark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KingGyuSuh/awesome-codex-spark/issues"
+  },
+  "scripts": {
+    "test": "node tests/validate-plugin.mjs && node tests/validate-skill.mjs && node tests/validate-production.mjs",
+    "test:local": "node tests/run-local-exec-smoke.mjs",
+    "validate:plugin": "node tests/validate-plugin.mjs",
+    "validate:skill": "node tests/validate-skill.mjs",
+    "validate:production": "node tests/validate-production.mjs"
+  },
+  "files": [
+    ".agents/plugins/marketplace.json",
+    ".codex-plugin",
+    "skills",
+    "assets",
+    "examples",
+    "docs",
+    "tests",
+    "plugin.schema.json",
+    "README.md",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md"
+  ],
+  "keywords": [
+    "codex",
+    "codex-plugin",
+    "codex-skills",
+    "subagents",
+    "spark",
+    "gpt-5.3",
+    "computer-use",
+    "browser-use",
+    "automation",
+    "ui-testing",
+    "delegation",
+    "agent-orchestration",
+    "mac-automation",
+    "traceable"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18"
+  }
+}

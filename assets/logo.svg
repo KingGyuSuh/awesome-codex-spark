@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Codex Spark">
+  <title>Codex Spark</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0E1B17"/>
+      <stop offset="100%" stop-color="#10A37F"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#B5F1DC"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="256" height="256" rx="48" ry="48" fill="url(#bg)"/>
+  <path d="M148 36 L78 144 L120 144 L104 220 L182 108 L138 108 Z"
+        fill="url(#bolt)" stroke="#0E1B17" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="200" cy="56" r="6" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="60" cy="200" r="4" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="220" cy="180" r="3" fill="#FFFFFF" opacity="0.6"/>
+</svg>

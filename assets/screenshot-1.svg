@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" role="img" aria-label="Codex Spark trace example">
+  <title>Codex Spark trace example</title>
+  <rect width="1280" height="800" fill="#0E1B17"/>
+  <rect x="40" y="40" width="1200" height="80" rx="12" fill="#10A37F"/>
+  <text x="80" y="92" font-family="Menlo, monospace" font-size="32" font-weight="700" fill="#FFFFFF">Codex Spark — traceable UI delegation</text>
+  <rect x="40" y="160" width="580" height="600" rx="12" fill="#13241F" stroke="#10A37F" stroke-width="1"/>
+  <text x="64" y="200" font-family="Menlo, monospace" font-size="20" fill="#B5F1DC">Handoff (parent → spark)</text>
+  <text x="64" y="240" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">TASK: paste approved post text into</text>
+  <text x="64" y="262" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">      visible X composer; stop before</text>
+  <text x="64" y="284" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">      publishing</text>
+  <text x="64" y="320" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">TRACE_ID: spark-20260507-094500-x-post</text>
+  <text x="64" y="352" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">TOOL_SURFACE: computer-use</text>
+  <text x="64" y="384" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">TARGET: Google Chrome, @example</text>
+  <text x="64" y="416" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">CONTENT: "Exact approved text"</text>
+  <text x="64" y="448" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">EXECUTION: model gpt-5.3-codex-spark,</text>
+  <text x="64" y="470" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">           reasoning_effort high,</text>
+  <text x="64" y="492" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">           APPROVAL: parent confirmed</text>
+  <text x="64" y="524" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">VERIFY: visible composer text</text>
+  <text x="64" y="546" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">        exactly matches CONTENT</text>
+  <text x="64" y="578" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">LIMITS: stop before final publish click</text>
+
+  <rect x="660" y="160" width="580" height="600" rx="12" fill="#13241F" stroke="#10A37F" stroke-width="1"/>
+  <text x="684" y="200" font-family="Menlo, monospace" font-size="20" fill="#B5F1DC">Trace (spark → parent)</text>
+  <text x="684" y="240" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">status: succeeded</text>
+  <text x="684" y="270" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">tool_surface: computer-use</text>
+  <text x="684" y="300" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">model_config: gpt-5.3-codex-spark / high</text>
+  <text x="684" y="338" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">steps:</text>
+  <text x="704" y="362" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">- pbcopy approved text</text>
+  <text x="704" y="384" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">- focus visible composer</text>
+  <text x="704" y="406" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">- press_key super+v</text>
+  <text x="704" y="428" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">- read visible composer text</text>
+  <text x="684" y="466" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">verification:</text>
+  <text x="704" y="490" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">- check: exact-match composer text</text>
+  <text x="704" y="510" font-family="Menlo, monospace" font-size="14" fill="#B5F1DC">  result: pass</text>
+  <text x="684" y="546" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">artifacts: composer screenshot</text>
+  <text x="684" y="576" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">blockers: none</text>
+  <text x="684" y="606" font-family="Menlo, monospace" font-size="16" fill="#FFFFFF">next_step: parent confirms publish</text>
+</svg>

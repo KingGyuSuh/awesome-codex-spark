@@ -1,0 +1,5 @@
+interface:
+  display_name: "Codex Spark Delegate"
+  short_description: "Traceable spark UI delegation"
+  brand_color: "#10A37F"
+  default_prompt: "Use $codex-spark-delegate to delegate this Browser Use check to spark with a trace."

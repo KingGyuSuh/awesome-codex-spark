@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Codex local state
+.codex/
+.claude/
+.harness/
+.agents/*
+!.agents/plugins/
+!.agents/plugins/marketplace.json
+CLAUDE.md
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Build artifacts
+dist/
+build/
+
+# Local test and runtime output
+tmp/
+*.log
+codex-spark-runs/
+release_notes.md

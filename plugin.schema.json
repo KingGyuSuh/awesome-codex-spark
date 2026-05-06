@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/KingGyuSuh/awesome-codex-spark/plugin.schema.json",
+  "title": "Codex Plugin Manifest",
+  "description": "Advisory JSON Schema for .codex-plugin/plugin.json. Mirrors the fields documented at https://developers.openai.com/codex/plugins/build as of 2026-05. Codex itself does not require this schema; it is provided so editors and CI can validate authoring without a separate runtime.",
+  "type": "object",
+  "required": ["name", "version", "description"],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$",
+      "description": "kebab-case plugin identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z-.]+)?(\\+[0-9A-Za-z-.]+)?$",
+      "description": "Semantic Version 2.0.0"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10
+    },
+    "author": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string" },
+            "url": { "type": "string", "format": "uri" },
+            "email": { "type": "string", "format": "email" }
+          }
+        }
+      ]
+    },
+    "homepage": { "type": "string", "format": "uri" },
+    "repository": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        }
+      ]
+    },
+    "license": { "type": "string" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "skills": {
+      "type": "string",
+      "description": "Path to skills directory, relative to plugin root, must start with ./"
+    },
+    "mcpServers": { "type": "string" },
+    "apps": { "type": "string" },
+    "hooks": { "type": "string" },
+    "interface": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 64 },
+        "shortDescription": { "type": "string", "maxLength": 128 },
+        "longDescription": { "type": "string" },
+        "developerName": { "type": "string" },
+        "category": { "type": "string" },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Documented examples use Read and Write. Other tokens may exist but are undocumented as of 2026-05."
+        },
+        "websiteURL": { "type": "string", "format": "uri" },
+        "privacyPolicyURL": { "type": "string", "format": "uri" },
+        "termsOfServiceURL": { "type": "string", "format": "uri" },
+        "defaultPrompt": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "type": "string", "maxLength": 128 }
+        },
+        "brandColor": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "composerIcon": { "type": "string" },
+        "logo": { "type": "string" },
+        "screenshots": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

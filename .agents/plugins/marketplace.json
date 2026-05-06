@@ -1,0 +1,20 @@
+{
+  "name": "awesome-codex-spark",
+  "interface": {
+    "displayName": "Awesome Codex Spark"
+  },
+  "plugins": [
+    {
+      "name": "codex-spark",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
