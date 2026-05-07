@@ -1,6 +1,6 @@
 {
   "name": "codex-spark",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Codex plugin for traceable GPT-5.3 Codex Spark delegation to Computer Use and Browser Use tasks.",
   "type": "module",

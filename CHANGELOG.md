@@ -6,6 +6,10 @@ uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+No unreleased changes.
+
+## [0.1.1] - 2026-05-08
+
 ### Changed
 
 - Plugin tree lives under `plugins/codex-spark/`. Marketplace
@@ -80,5 +84,6 @@ Initial open-source release.
   `model = "gpt-5.3-codex-spark"` instead of shipping a `.codex/agents`
   file.
 
-[Unreleased]: https://github.com/KingGyuSuh/awesome-codex-spark/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/KingGyuSuh/awesome-codex-spark/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/KingGyuSuh/awesome-codex-spark/releases/tag/v0.1.1
 [0.1.0]: https://github.com/KingGyuSuh/awesome-codex-spark/releases/tag/v0.1.0
