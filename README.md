@@ -50,9 +50,33 @@ Current Codex plugin docs package skills, app integrations, MCP servers, hooks, 
 - Access to the `gpt-5.3-codex-spark` model in your Codex session. Without it, the spawned subagent returns a `aborted` trace with a `model_unavailable` blocker; the parent may fall back to another model, with the caveat that trace quality reflects that model's executor profile, not Spark's.
 - Node.js `>=18.18` only if you plan to run the bundled validators (`npm test`) or the local exec smoke (`npm run test:local`). The plugin itself does not require Node at runtime.
 
-## Install From A Local Clone
+## Install
 
-Self-serve publishing on the official Codex plugin marketplace is reported as "coming soon" by the OpenAI docs. Until it ships, install via a local clone:
+This repo ships its own in-session marketplace at `.agents/plugins/marketplace.json`, with the plugin tree at the repo root (`.codex-plugin/plugin.json`). Self-serve publishing on the official Codex plugin marketplace is reported as "coming soon" by the OpenAI docs, but the marketplace file works today through any of the three sources below. Pick one, then `/plugins` → open the `Awesome Codex Spark` entry → install `codex-spark` → restart Codex.
+
+### Public Git Repo (recommended)
+
+GitHub shorthand — no clone, no path management:
+
+```bash
+codex plugin marketplace add KingGyuSuh/awesome-codex-spark
+codex
+/plugins
+```
+
+### Pinned Tag
+
+For reproducible installs against a specific release:
+
+```bash
+codex plugin marketplace add KingGyuSuh/awesome-codex-spark@<tag>
+codex
+/plugins
+```
+
+### Local Clone
+
+For contributors developing the plugin in-tree, or anyone who wants to install from a checkout:
 
 ```bash
 git clone https://github.com/KingGyuSuh/awesome-codex-spark.git
@@ -62,13 +86,11 @@ codex
 /plugins
 ```
 
-Install `codex-spark` from the `Awesome Codex Spark` marketplace, restart Codex, then invoke:
+Once `codex-spark` is installed, invoke from any Codex thread:
 
 ```text
 Use $codex-spark-delegate to run a read-only Browser Use check on http://localhost:3000.
 ```
-
-You can also use the repo-local marketplace file at `.agents/plugins/marketplace.json` while developing this plugin.
 
 ## Usage
 
@@ -123,7 +145,7 @@ Full validation notes: [`docs/VALIDATION.md`](docs/VALIDATION.md).
 
 **Trace says `succeeded` but the side effect did not actually land.** Look for `side_effect_unverified` in the trace next time — it is a documented status. If you saw `succeeded` despite an unconfirmed side effect, the executor skipped the post-action visible read, which is a contract break. File an issue with the trace.
 
-**`/plugins` does not show the plugin tile.** Make sure you ran `codex plugin marketplace add "$PWD"` from the repo root, not a sibling directory, and restarted Codex after install.
+**`/plugins` does not show the plugin tile.** Confirm the `marketplace add` source resolves to a tree that contains `.agents/plugins/marketplace.json`: for the local-clone path, that means running the command from the repo root (not a sibling directory); for the GitHub shorthand path, that means using the `KingGyuSuh/awesome-codex-spark` slug exactly. Restart Codex after install in either case.
 
 ## Development
 
