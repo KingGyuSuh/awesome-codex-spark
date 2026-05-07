@@ -7,7 +7,17 @@
 
 Codex plugin for delegating concrete Computer Use and Browser Use tasks to GPT-5.3 Codex Spark subagents with structured handoffs and auditable traces.
 
-The plugin packages one main-session skill: `$codex-spark-delegate`. The skill keeps the reasoning-heavy parent session in charge of scope, approval, model effort, and recovery, while a spark subagent performs one bounded UI/browser task as an executor.
+The plugin packages one main-session skill, **`$codex-spark-delegate`**. The parent session keeps scope, approval, model effort, and recovery; a spark subagent runs one bounded UI/browser task as the executor and returns an auditable trace.
+
+**Quick install:**
+
+```bash
+codex plugin marketplace add KingGyuSuh/awesome-codex-spark
+```
+
+Then `/plugins` → install `codex-spark` → restart Codex. See [Install](#install) for tag-pinned and local-clone paths.
+
+**Contents** — [Why](#why) · [What This Is Not](#what-this-is-not) · [What It Installs](#what-it-installs) · [Requirements](#requirements) · [Install](#install) · [Usage](#usage) · [Validation](#validation) · [Troubleshooting](#troubleshooting) · [Development](#development) · [Documentation](#documentation)
 
 ## Why
 
@@ -17,13 +27,15 @@ The child agent must return a trace: what it saw, what it did, which checks pass
 
 ## What This Is Not
 
-This plugin is intentionally narrow. It is **not**:
+Intentionally narrow:
 
-- a domain executor (no built-in X poster, Reddit poster, Gmail sender — those belong in separate plugins);
-- a substitute for a missing surface (it does not silently fall back to web search, HTTP, or a headless browser when Browser Use is unavailable);
-- a planner (the spark child does not decide content, accounts, or scope — the parent does).
+- **Not a domain executor** — no built-in X poster, Reddit poster, Gmail sender. Those belong in separate plugins.
+- **Not a fallback layer** — does not silently degrade to web search, HTTP, or a headless browser when Browser Use is unavailable.
+- **Not a planner** — the spark child does not decide content, accounts, or scope. The parent does.
 
 ## What It Installs
+
+Plugin tree:
 
 ```text
 .codex-plugin/plugin.json
@@ -36,19 +48,22 @@ assets/composer-icon.svg
 assets/screenshot-1.svg
 ```
 
-Current Codex plugin docs package skills, app integrations, MCP servers, hooks, and assets. Custom subagent TOML files are still standalone Codex configuration, so this plugin does not pretend to auto-install a static `.codex/agents` file. Instead, the skill tells the parent session to spawn a `default` subagent with:
+Codex plugins package skills, app integrations, MCP servers, hooks, and assets. Subagent TOML files remain standalone Codex configuration, so this plugin does not auto-install a static `.codex/agents` file — the skill instructs the parent session to spawn a `default` subagent with the contract below.
 
-- model: `gpt-5.3-codex-spark`
-- reasoning effort: `high` by default
-- `medium` or `low` only for simpler read-only work
-- one structured handoff covering `TASK`, `TRACE_ID`, `TOOL_SURFACE`, `TARGET`, `CONTENT`, `EXECUTION`, `VERIFY`, `LIMITS`, and `REPORT`
+| Field | Value |
+| --- | --- |
+| Model | `gpt-5.3-codex-spark` |
+| Reasoning effort | `high` by default; `medium` / `low` only for simpler read-only work |
+| Handoff sections | `TASK`, `TRACE_ID`, `TOOL_SURFACE`, `TARGET`, `CONTENT`, `EXECUTION`, `VERIFY`, `LIMITS`, `REPORT` |
 
 ## Requirements
 
-- Codex CLI `0.128.0` or later with an active login.
-- macOS, if you intend to use Computer Use. Browser Use works cross-platform.
-- Access to the `gpt-5.3-codex-spark` model in your Codex session. Without it, the spawned subagent returns a `aborted` trace with a `model_unavailable` blocker; the parent may fall back to another model, with the caveat that trace quality reflects that model's executor profile, not Spark's.
-- Node.js `>=18.18` only if you plan to run the bundled validators (`npm test`) or the local exec smoke (`npm run test:local`). The plugin itself does not require Node at runtime.
+| Requirement | Notes |
+| --- | --- |
+| Codex CLI | `0.128.0` or later, with an active login |
+| OS | macOS for Computer Use; Browser Use is cross-platform |
+| Model access | `gpt-5.3-codex-spark` in your Codex session. Without it, the subagent returns an `aborted` trace with a `model_unavailable` blocker; falling back to another model works but trace quality reflects that model's executor profile, not Spark's |
+| Node.js | `>=18.18`, only for `npm test` and `npm run test:local`. Not required at runtime |
 
 ## Install
 
@@ -94,11 +109,13 @@ Use $codex-spark-delegate to run a read-only Browser Use check on http://localho
 
 ## Usage
 
-Three end-to-end recipes live under [`examples/`](examples/):
+End-to-end recipes live under [`examples/`](examples/):
 
-- [`examples/qa-local-nextjs.md`](examples/qa-local-nextjs.md) — read-only QA pass on a localhost dev server.
-- [`examples/approved-form-submit.md`](examples/approved-form-submit.md) — approved form fill with explicit parent approval.
-- [`examples/korean-clipboard-paste.md`](examples/korean-clipboard-paste.md) — validated clipboard + `press_key` path for Korean and other non-ASCII entry.
+| Recipe | Surface | What it shows |
+| --- | --- | --- |
+| [`qa-local-nextjs.md`](examples/qa-local-nextjs.md) | Browser Use | Read-only QA pass on a localhost dev server |
+| [`approved-form-submit.md`](examples/approved-form-submit.md) | Browser Use | Approved form fill with explicit parent approval |
+| [`korean-clipboard-paste.md`](examples/korean-clipboard-paste.md) | Computer Use | Validated clipboard + `press_key` path for Korean / non-ASCII entry |
 
 A minimal read-only Browser Use handoff:
 
@@ -124,16 +141,13 @@ Verify: visible composer text exactly matches Content.
 
 ## Validation
 
-This plugin is validated at three levels:
+Three levels:
 
-- static validators for manifest, marketplace, skill contract, and production
-  tree shape;
-- an external-project `codex exec` maintainer smoke that checks the installed
-  skill produces the required handoff sections;
-- manual live checks for Browser Use blocked-path behavior, Computer Use
-  preflight, a local approved action, and Korean clipboard paste.
+- **Static validators** — manifest, marketplace, skill contract, and production tree shape.
+- **External-project `codex exec` maintainer smoke** — checks the installed skill produces the required handoff sections.
+- **Manual live checks** — Browser Use blocked-path behavior, Computer Use preflight, a local approved action, and Korean clipboard paste.
 
-Full validation notes: [`docs/VALIDATION.md`](docs/VALIDATION.md).
+Full notes: [`docs/VALIDATION.md`](docs/VALIDATION.md).
 
 ## Troubleshooting
 
@@ -150,13 +164,12 @@ Full validation notes: [`docs/VALIDATION.md`](docs/VALIDATION.md).
 ## Development
 
 ```bash
-npm test
-npm run test:local
+npm test           # static validators
+npm run test:local # external-project codex exec smoke
 ```
 
-`npm test` runs the static validators (`validate-plugin`, `validate-skill`, `validate-production`).
-
-`npm run test:local` creates `/tmp/codex-spark-plugin-test`, stages this repository as a local Codex plugin, writes a local marketplace file, mirrors the exact skill into the external test project for non-interactive ephemeral `codex exec`, and checks that the skill produces the expected structured handoff.
+- **`npm test`** runs `validate-plugin`, `validate-skill`, and `validate-production`.
+- **`npm run test:local`** creates `/tmp/codex-spark-plugin-test`, stages this repository as a local Codex plugin, writes a local marketplace file, mirrors the exact skill into the external test project for non-interactive ephemeral `codex exec`, and checks that the skill produces the expected structured handoff.
 
 Manual live tests should additionally install the plugin through `/plugins` and run disposable Browser Use or Computer Use tasks from a fresh Codex thread.
 
