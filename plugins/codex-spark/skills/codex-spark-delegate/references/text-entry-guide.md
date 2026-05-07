@@ -60,7 +60,7 @@ entry:
 
 The path documented above is the same path that produced
 `spark-live-computer-korean-003` in
-[`docs/VALIDATION.md`](../../../docs/VALIDATION.md). An earlier trace
+[`docs/VALIDATION.md`](../../../../../docs/VALIDATION.md). An earlier trace
 `spark-live-computer-korean-002` succeeded only because the target was
 a plain accessibility input that tolerated `set_value`; that trace
 exposed the literal-shortcut anti-pattern and led to the press_key

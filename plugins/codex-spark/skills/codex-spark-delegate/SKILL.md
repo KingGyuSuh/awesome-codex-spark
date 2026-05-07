@@ -123,5 +123,4 @@ For trace quality, the child must name any fallback that affected confidence, su
 
 ## References
 
-- [`references/test-prompts.md`](references/test-prompts.md) — validation prompts for read-only Browser Use, read-only Computer Use, and approved form fill.
 - [`references/text-entry-guide.md`](references/text-entry-guide.md) — clipboard + `press_key` contract for non-ASCII and rich-text entry.

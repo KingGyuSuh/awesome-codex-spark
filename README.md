@@ -35,17 +35,18 @@ Intentionally narrow:
 
 ## What It Installs
 
-Plugin tree:
+The plugin lives under `plugins/codex-spark/` (subdirectory layout per the official Codex docs), with the marketplace at the repo root:
 
 ```text
-.codex-plugin/plugin.json
-skills/codex-spark-delegate/SKILL.md
-skills/codex-spark-delegate/references/test-prompts.md
-skills/codex-spark-delegate/references/text-entry-guide.md
-skills/codex-spark-delegate/agents/openai.yaml
-assets/logo.svg
-assets/composer-icon.svg
-assets/screenshot-1.svg
+.agents/plugins/marketplace.json                                       # marketplace entry, source.path → ./plugins/codex-spark
+plugins/codex-spark/.codex-plugin/plugin.json                          # plugin manifest
+plugins/codex-spark/skills/codex-spark-delegate/SKILL.md
+plugins/codex-spark/skills/codex-spark-delegate/references/test-prompts.md
+plugins/codex-spark/skills/codex-spark-delegate/references/text-entry-guide.md
+plugins/codex-spark/skills/codex-spark-delegate/agents/openai.yaml
+plugins/codex-spark/assets/logo.svg
+plugins/codex-spark/assets/composer-icon.svg
+plugins/codex-spark/assets/screenshot-1.svg
 ```
 
 Codex plugins package skills, app integrations, MCP servers, hooks, and assets. Subagent TOML files remain standalone Codex configuration, so this plugin does not auto-install a static `.codex/agents` file — the skill instructs the parent session to spawn a `default` subagent with the contract below.
@@ -67,7 +68,7 @@ Codex plugins package skills, app integrations, MCP servers, hooks, and assets. 
 
 ## Install
 
-This repo ships its own in-session marketplace at `.agents/plugins/marketplace.json`, with the plugin tree at the repo root (`.codex-plugin/plugin.json`). Self-serve publishing on the official Codex plugin marketplace is reported as "coming soon" by the OpenAI docs, but the marketplace file works today through any of the three sources below. Pick one, then `/plugins` → open the `Awesome Codex Spark` entry → install `codex-spark` → restart Codex.
+This repo ships its own in-session marketplace at `.agents/plugins/marketplace.json`, with the plugin tree under `plugins/codex-spark/`. Self-serve publishing on the official Codex plugin marketplace is reported as "coming soon" by the OpenAI docs, but the marketplace file works today through any of the three sources below. Pick one, then `/plugins` → open the `Awesome Codex Spark` entry → install `codex-spark` → restart Codex.
 
 ### Public Git Repo (recommended)
 
@@ -155,7 +156,7 @@ Full notes: [`docs/VALIDATION.md`](docs/VALIDATION.md).
 
 **Browser Use surface returns `blocked` immediately.** The Browser Use plugin is not installed in the same Codex session. Install Browser Use, restart, and re-issue. The skill is designed to surface this rather than silently fall back to Computer Use or HTTP.
 
-**Korean / CJK / emoji input becomes garbled.** The executor used `type_text` instead of clipboard + `press_key`. Re-issue the handoff and quote [`text-entry-guide.md`](skills/codex-spark-delegate/references/text-entry-guide.md) explicitly. The validated path is `pbcopy` → `press_key super+v` → exact-match read.
+**Korean / CJK / emoji input becomes garbled.** The executor used `type_text` instead of clipboard + `press_key`. Re-issue the handoff and quote [`text-entry-guide.md`](plugins/codex-spark/skills/codex-spark-delegate/references/text-entry-guide.md) explicitly. The validated path is `pbcopy` → `press_key super+v` → exact-match read.
 
 **Trace says `succeeded` but the side effect did not actually land.** Look for `side_effect_unverified` in the trace next time — it is a documented status. If you saw `succeeded` despite an unconfirmed side effect, the executor skipped the post-action visible read, which is a contract break. File an issue with the trace.
 

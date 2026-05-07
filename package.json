@@ -22,9 +22,7 @@
   },
   "files": [
     ".agents/plugins/marketplace.json",
-    ".codex-plugin",
-    "skills",
-    "assets",
+    "plugins/codex-spark",
     "examples",
     "docs",
     "tests",

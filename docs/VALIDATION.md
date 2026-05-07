@@ -9,18 +9,18 @@ from the Codex CLI or Codex app.
 
 ```bash
 npm test
-python3 /path/to/skill-creator/scripts/quick_validate.py skills/codex-spark-delegate
+python3 /path/to/skill-creator/scripts/quick_validate.py plugins/codex-spark/skills/codex-spark-delegate
 ```
 
 Current coverage:
 
-- `.codex-plugin/plugin.json` parses, points `skills` at `./skills/`, and keeps
-  all bundled paths relative to the plugin root.
+- `plugins/codex-spark/.codex-plugin/plugin.json` parses, points `skills` at
+  `./skills/`, and keeps all bundled paths relative to the plugin root.
 - `.agents/plugins/marketplace.json` exposes `codex-spark` with local source
-  `./`, install policy, authentication policy, and category.
-- `skills/codex-spark-delegate/SKILL.md` has valid frontmatter and includes the
-  required model, reasoning effort, handoff, approval, surface, text-entry, and
-  trace-status contract.
+  `./plugins/codex-spark`, install policy, authentication policy, and category.
+- `plugins/codex-spark/skills/codex-spark-delegate/SKILL.md` has valid
+  frontmatter and includes the required model, reasoning effort, handoff,
+  approval, surface, text-entry, and trace-status contract.
 - `tests/validate-production.mjs` rejects publishable retired artifacts such as
   registries, CLIs, packs, harness state, and stale production wording.
 
@@ -71,7 +71,8 @@ Current coverage:
 ## Manual Live Checks
 
 Manual checks should be run from a fresh interactive Codex thread after the
-plugin is installed through `/plugins`.
+plugin is installed through `/plugins`. Ready-to-paste handoff strings for
+the required scenarios live in [`test-prompts.md`](test-prompts.md).
 
 Required scenarios:
 

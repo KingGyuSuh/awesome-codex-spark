@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const skillDir = path.join(root, "skills", "codex-spark-delegate");
+const skillDir = path.join(root, "plugins", "codex-spark", "skills", "codex-spark-delegate");
 const skillPath = path.join(skillDir, "SKILL.md");
 const text = await readFile(skillPath, "utf8");
 
@@ -54,9 +54,13 @@ for (const phrase of requiredPhrases) {
   assert(text.includes(phrase), `SKILL.md missing required phrase: ${phrase}`);
 }
 
-assert(existsSync(path.join(skillDir, "references", "test-prompts.md")), "test prompts reference is missing");
 assert(existsSync(path.join(skillDir, "references", "text-entry-guide.md")), "text-entry-guide reference is missing");
 assert(existsSync(path.join(skillDir, "agents", "openai.yaml")), "agents/openai.yaml is missing");
+assert(
+  !existsSync(path.join(skillDir, "references", "test-prompts.md")),
+  "test-prompts.md is a maintainer doc and must live under docs/, not inside the skill bundle",
+);
+assert(existsSync(path.join(root, "docs", "test-prompts.md")), "docs/test-prompts.md is missing");
 
 const textEntryGuide = await readFile(path.join(skillDir, "references", "text-entry-guide.md"), "utf8");
 for (const phrase of ["pbcopy", "press_key", "exact-match", "set_value"]) {

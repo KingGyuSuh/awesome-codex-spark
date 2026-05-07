@@ -6,7 +6,23 @@ uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-No unreleased changes.
+### Changed
+
+- Plugin tree lives under `plugins/codex-spark/`. Marketplace
+  `source.path` resolves to `./plugins/codex-spark`.
+- Marketplace identifier in `.agents/plugins/marketplace.json` is
+  `awesome-codex-spark-marketplace`, distinct from the repository slug.
+- Validators and the `codex exec` smoke read from the new tree;
+  `package.json` `files` and the doc set follow the same path.
+- Maintainer-only manual prompts moved from
+  `plugins/codex-spark/skills/codex-spark-delegate/references/test-prompts.md`
+  to `docs/test-prompts.md`. SKILL.md no longer references them, and the
+  skill bundle now contains only runtime-required material.
+
+### Fixed
+
+- `references/text-entry-guide.md` link to `docs/VALIDATION.md` resolves
+  correctly from the new plugin tree depth.
 
 ## [0.1.0] - 2026-05-07
 

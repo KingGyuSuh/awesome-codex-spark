@@ -14,7 +14,8 @@ GPT-5.3 Codex Spark subagents with traceable handoffs.
   for a requested Computer Use or Browser Use surface.
 - Keep `SKILL.md` concise. Move detailed contract material, validation
   prompts, examples, or test fixtures into
-  `skills/codex-spark-delegate/references/` or top-level `examples/`.
+  `plugins/codex-spark/skills/codex-spark-delegate/references/` or top-level
+  `examples/`.
 
 ## Development
 
@@ -55,7 +56,8 @@ Release flow:
 
 1. Move the relevant `## [Unreleased]` notes under a new
    `## [x.y.z] - YYYY-MM-DD` section in `CHANGELOG.md`.
-2. Bump `version` in `.codex-plugin/plugin.json` and `package.json`.
+2. Bump `version` in `plugins/codex-spark/.codex-plugin/plugin.json` and
+   `package.json`.
 3. `npm test` must pass.
 4. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
 5. The `Release` workflow extracts the matching CHANGELOG section and

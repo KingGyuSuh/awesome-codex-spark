@@ -1,5 +1,5 @@
 {
-  "name": "awesome-codex-spark",
+  "name": "awesome-codex-spark-marketplace",
   "interface": {
     "displayName": "Awesome Codex Spark"
   },
@@ -8,7 +8,7 @@
       "name": "codex-spark",
       "source": {
         "source": "local",
-        "path": "./"
+        "path": "./plugins/codex-spark"
       },
       "policy": {
         "installation": "AVAILABLE",

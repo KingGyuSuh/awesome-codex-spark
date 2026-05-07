@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 import path from "node:path";
 
 const repoRoot = process.cwd();
+const pluginSource = path.join(repoRoot, "plugins", "codex-spark");
 const testRoot = process.env.CODEX_SPARK_TEST_ROOT || "/tmp/codex-spark-plugin-test";
 const pluginTarget = path.join(testRoot, "plugins", "codex-spark");
 const directSkillTarget = path.join(testRoot, ".agents", "skills", "codex-spark-delegate");
@@ -36,13 +37,14 @@ await mkdir(path.join(testRoot, "plugins"), { recursive: true });
 await mkdir(path.join(testRoot, ".agents", "plugins"), { recursive: true });
 await mkdir(path.join(testRoot, ".agents", "skills"), { recursive: true });
 
-await copyIfExists(path.join(repoRoot, ".codex-plugin"), path.join(pluginTarget, ".codex-plugin"));
-await copyIfExists(path.join(repoRoot, "skills"), path.join(pluginTarget, "skills"));
+await copyIfExists(path.join(pluginSource, ".codex-plugin"), path.join(pluginTarget, ".codex-plugin"));
+await copyIfExists(path.join(pluginSource, "skills"), path.join(pluginTarget, "skills"));
+await copyIfExists(path.join(pluginSource, "assets"), path.join(pluginTarget, "assets"));
 
 // Codex plugin installation is UI-driven after marketplace discovery. Mirror the
 // exact plugin skill into .agents/skills so non-interactive exec can validate the
 // same SKILL.md behavior without mutating the user's plugin cache.
-await copyIfExists(path.join(repoRoot, "skills", "codex-spark-delegate"), directSkillTarget);
+await copyIfExists(path.join(pluginSource, "skills", "codex-spark-delegate"), directSkillTarget);
 
 await writeFile(
   path.join(testRoot, ".agents", "plugins", "marketplace.json"),

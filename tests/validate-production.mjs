@@ -52,20 +52,20 @@ const requiredPublicFiles = [
   "CODE_OF_CONDUCT.md",
   "package.json",
   "plugin.schema.json",
-  ".codex-plugin/plugin.json",
   ".agents/plugins/marketplace.json",
+  "plugins/codex-spark/.codex-plugin/plugin.json",
   "docs/ARCHITECTURE.md",
   "docs/VALIDATION.md",
-  "skills/codex-spark-delegate/SKILL.md",
-  "skills/codex-spark-delegate/references/test-prompts.md",
-  "skills/codex-spark-delegate/references/text-entry-guide.md",
-  "skills/codex-spark-delegate/agents/openai.yaml",
+  "plugins/codex-spark/skills/codex-spark-delegate/SKILL.md",
+  "plugins/codex-spark/skills/codex-spark-delegate/references/text-entry-guide.md",
+  "plugins/codex-spark/skills/codex-spark-delegate/agents/openai.yaml",
+  "docs/test-prompts.md",
   "examples/qa-local-nextjs.md",
   "examples/approved-form-submit.md",
   "examples/korean-clipboard-paste.md",
-  "assets/logo.svg",
-  "assets/composer-icon.svg",
-  "assets/screenshot-1.svg",
+  "plugins/codex-spark/assets/logo.svg",
+  "plugins/codex-spark/assets/composer-icon.svg",
+  "plugins/codex-spark/assets/screenshot-1.svg",
   ".github/workflows/test.yml",
   ".github/workflows/release.yml",
 ];
@@ -79,11 +79,11 @@ const scannedFiles = [
   "AGENTS.md",
   "LICENSE",
   "package.json",
-  ".codex-plugin/plugin.json",
   ".agents/plugins/marketplace.json",
+  "plugins/codex-spark/.codex-plugin/plugin.json",
   "docs/ARCHITECTURE.md",
   "docs/VALIDATION.md",
-  "skills/codex-spark-delegate/SKILL.md",
+  "plugins/codex-spark/skills/codex-spark-delegate/SKILL.md",
 ];
 
 const forbiddenPatterns = [
@@ -107,7 +107,9 @@ for (const relativePath of scannedFiles) {
 assert(packageJson.private === true, "package.json must set private: true (this repo is a Codex plugin, not an npm package)");
 
 const changelog = await readFile(path.join(root, "CHANGELOG.md"), "utf8");
-const manifest = JSON.parse(await readFile(path.join(root, ".codex-plugin", "plugin.json"), "utf8"));
+const manifest = JSON.parse(
+  await readFile(path.join(root, "plugins", "codex-spark", ".codex-plugin", "plugin.json"), "utf8"),
+);
 assert(
   changelog.includes(`## [${manifest.version}]`),
   `CHANGELOG.md is missing an entry for the current manifest version ${manifest.version}`,

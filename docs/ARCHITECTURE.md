@@ -73,7 +73,7 @@ Text entry fallbacks are especially important. For non-ASCII or
 rich-text surfaces, the intended path is `pbcopy` plus Computer Use
 `press_key` paste and visible exact-match verification. The full
 contract, fallbacks, and trace requirements live in
-[`skills/codex-spark-delegate/references/text-entry-guide.md`](../skills/codex-spark-delegate/references/text-entry-guide.md).
+[`plugins/codex-spark/skills/codex-spark-delegate/references/text-entry-guide.md`](../plugins/codex-spark/skills/codex-spark-delegate/references/text-entry-guide.md).
 A child must not represent shortcut strings through literal typing. If
 it falls back to `set_value`, that is acceptable only for plain
 accessibility text inputs and must be reported in the trace.
@@ -81,16 +81,16 @@ accessibility text inputs and must be reported in the trace.
 ## Repo layout
 
 ```text
-.codex-plugin/plugin.json                       plugin manifest
-skills/codex-spark-delegate/SKILL.md            main-session skill
-skills/codex-spark-delegate/references/         long-form contract material
-skills/codex-spark-delegate/agents/openai.yaml  UI metadata
-.agents/plugins/marketplace.json                repo-local marketplace
-assets/                                         logo, composer icon, screenshot
-examples/                                       end-to-end usage recipes
-docs/                                           architecture + live trace evidence
-plugin.schema.json                              advisory manifest schema
-tests/                                          validators + non-interactive smoke
+.agents/plugins/marketplace.json                                       repo-local marketplace, source.path → ./plugins/codex-spark
+plugins/codex-spark/.codex-plugin/plugin.json                          plugin manifest
+plugins/codex-spark/skills/codex-spark-delegate/SKILL.md               main-session skill
+plugins/codex-spark/skills/codex-spark-delegate/references/            long-form contract material
+plugins/codex-spark/skills/codex-spark-delegate/agents/openai.yaml     UI metadata
+plugins/codex-spark/assets/                                            logo, composer icon, screenshot
+examples/                                                              end-to-end usage recipes
+docs/                                                                  architecture + live trace evidence
+plugin.schema.json                                                     advisory manifest schema
+tests/                                                                 validators + non-interactive smoke
 ```
 
 ## Local plugin testing
