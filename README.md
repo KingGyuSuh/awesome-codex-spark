@@ -15,7 +15,7 @@ The plugin packages one main-session skill, **`$codex-spark-delegate`**. The par
 codex plugin marketplace add KingGyuSuh/awesome-codex-spark
 ```
 
-Then `/plugins` → install `codex-spark` → restart Codex. See [Install](#install) for tag-pinned and local-clone paths.
+Then `/plugins` → install `codex-spark` → restart Codex. See [Install](#install) for tag-pinned, local-clone, and Codex desktop app paths.
 
 **Contents** — [Why](#why) · [What This Is Not](#what-this-is-not) · [What It Installs](#what-it-installs) · [Requirements](#requirements) · [Install](#install) · [Usage](#usage) · [Validation](#validation) · [Troubleshooting](#troubleshooting) · [Development](#development) · [Documentation](#documentation)
 
@@ -102,11 +102,33 @@ codex
 /plugins
 ```
 
-Once `codex-spark` is installed, invoke from any Codex thread:
+### Codex Desktop App
+
+If you use the Codex desktop app instead of the CLI, the marketplace is added through the Plugins UI:
+
+1. Click **Plugins** in the side tab.
+2. Open the **Built by OpenAI** dropdown next to the search box and choose **+ Add more**.
+3. In the **Add marketplace** dialog, enter `KingGyuSuh/awesome-codex-spark` in the **Source** field (leave **Git ref** and **Sparse paths** at their defaults) and click **Add marketplace**.
+
+![Add marketplace dialog with KingGyuSuh/awesome-codex-spark in the Source field](docs/images/add-marketplace.png)
+
+Then install `codex-spark` from the plugin tile. Type `$` in the composer — `codex-spark:codex-spark-delegate` should appear in the autocomplete list. If it does not show up, reboot the desktop app once and try again.
+
+![Composer showing "Use $codex-spark:codex-spark-delegate"](docs/images/use-instruction.png)
+
+Issue the handoff with the namespaced skill name:
+
+```text
+Use $codex-spark:codex-spark-delegate ...
+```
+
+Once `codex-spark` is installed (CLI or desktop app), invoke from any Codex thread:
 
 ```text
 Use $codex-spark-delegate to run a read-only Browser Use check on http://localhost:3000.
 ```
+
+> Note: the CLI accepts the short form `$codex-spark-delegate`; the desktop app's autocomplete uses the namespaced form `$codex-spark:codex-spark-delegate`. Both invoke the same skill.
 
 ## Usage
 
